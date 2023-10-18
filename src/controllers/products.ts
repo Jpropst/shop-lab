@@ -1,4 +1,4 @@
-import Products from "../models/Products";
+import Products from "../models/Product";
 import { reqRes, reqResNext } from "../utils/interfaces";
 import { ProductNotFoundError } from "../utils/errors";
 
@@ -18,36 +18,27 @@ export const postProduct: reqRes = async (req, res) => {
 
 export const getProductsParams: reqResNext = async (req, res, next) => {
 	try {
-	  if (Object.keys(req.query).length <= 0) next();
+	  if (Object.keys(req.query).length <= 0) next()
 	  else {
-		let products = await Products.find();
-  
-		// Check for "max-price" query parameter
+		let products = await Products.find()
 		if (req.query && req.query['max-price']) {
-		  const maxPrice = +req.query['max-price'];
-		  products = products.filter((product) => product.price <= maxPrice);
+		  const maxPrice = +req.query['max-price']
+		  products = products.filter((product) => product.price <= maxPrice)
 		}
-  
-		// Check for "includes" query parameter
-		// if (req.query && req.query.includes) {
-		//   const searchString = req.query.includes;
-		//   products = products.filter((product) =>
-		// 	product.name.toLowerCase().includes(searchString.toLowerCase())
-		//   );
-		// }
-  
-		// Check for "limit" query parameter
+		if (req.query && req.query.includes) {
+			const searchItem = req.query.includes.toString()
+			products = products.filter((item) => item.name.includes(searchItem))
+		  }
 		if (req.query && req.query.limit) {
-		  const limit = +req.query.limit;
-		  products = products.slice(0, limit);
+		  const limit = +req.query.limit
+		  products = products.slice(0, limit)
 		}
-  
-		res.status(200).send(products);
+		res.status(200).send(products)
 	  }
 	} catch (err) {
-	  res.status(500).send('Server Error');
+	  res.status(500).send('Server Error')
 	}
-  };
+  }
 
 // READ ALL
 

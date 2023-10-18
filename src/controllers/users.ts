@@ -1,4 +1,4 @@
-import Users from "../models/Users";
+import User from "../models/User";
 import { reqRes } from "../utils/interfaces";
 import { UserNotFoundError } from "../utils/errors";
 
@@ -6,7 +6,7 @@ import { UserNotFoundError } from "../utils/errors";
 
 export const postUser: reqRes = async (req, res) => {
     try {
-        const user = new Users(req.body)
+        const user = new User(req.body)
         await user.save()
         res.status(201).send(user)
     } catch (err) {
@@ -18,7 +18,7 @@ export const postUser: reqRes = async (req, res) => {
 
 export const getUsers: reqRes = async (req, res) => {
 	try {
-		const users = await Users.find()
+		const users = await User.find()
 		res.status(200).send(users)
 	} catch (err) {
 		res.status(500).send("Bad Request")
@@ -29,7 +29,7 @@ export const getUsers: reqRes = async (req, res) => {
 
 export const getUser: reqRes = async (req, res) => {
 	try {
-		const user = await Users.findById(req.params.id)
+		const user = await User.findById(req.params.id)
 		if (!user) throw new UserNotFoundError()
 		res.status(200).send(user)
 	} catch (err) {
@@ -45,7 +45,7 @@ export const getUser: reqRes = async (req, res) => {
 
 export const updateUser: reqRes = async (req, res) => {
 	try {
-		const user = await Users.findById(req.params.id)
+		const user = await User.findById(req.params.id)
 		if (!user) throw new UserNotFoundError()
 		if (req.body.displayName) user.displayName = req.body.displayName
         if (req.body.photoURL) user.photoURL = req.body.photoURL
@@ -65,7 +65,7 @@ export const updateUser: reqRes = async (req, res) => {
 
 export const deleteUser: reqRes = async (req, res) => {
 	try {
-		await Users.findByIdAndDelete(req.params.id)
+		await User.findByIdAndDelete(req.params.id)
 		res.status(204).send()
 	} catch (err) {
 		let status = { code: 500, message: "User Not Found" }

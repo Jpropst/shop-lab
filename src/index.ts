@@ -1,4 +1,4 @@
-import express from 'express';
+import express from 'express'
 import mongoose, { ConnectOptions } from "mongoose"
 import cors from "cors"
 import products from "./routes/productsRouter"
@@ -9,7 +9,7 @@ import dotenv from "dotenv"
 // CONFIGURATIONS
 
 dotenv.config()
-const app = express();
+const app = express()
 app.use(cors())
 app.use(express.json())
 
@@ -17,7 +17,7 @@ app.use(express.json())
 
 app.use("/products", products)
 app.use("/users", users)
-app.use("/cartItems", cartItems)
+app.use("/users", cartItems)
 
 const port = 4001
 

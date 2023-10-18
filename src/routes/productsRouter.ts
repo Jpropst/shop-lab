@@ -1,4 +1,4 @@
-import express from "express";
+import express from "express"
 import {
     postProduct,
     getProducts,
@@ -6,7 +6,7 @@ import {
     updateProduct,
     deleteProduct,
     getProductsParams
-} from "../controllers/products";
+} from "../controllers/products"
 
 const routes = express.Router()
 

@@ -1,11 +1,11 @@
-import express from "express";
+import express from "express"
 import {
     postUser,
     getUsers,
     getUser,
     updateUser,
     deleteUser
-} from "../controllers/users";
+} from "../controllers/users"
 
 const routes = express.Router()
 
