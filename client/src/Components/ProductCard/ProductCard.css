@@ -1,7 +1,3 @@
 .product-card img {
     width: 150px;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
 }
