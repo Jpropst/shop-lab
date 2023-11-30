@@ -6,9 +6,9 @@ const Home = () => {
 
     return (
         <div className='home'>
-            <h2>
-                Home
-            </h2>
+            <p>
+                This is the homepage
+            </p>
 
         </div>
     )

@@ -17,24 +17,24 @@ const Filter = () => {
     };
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const queryParams = new URLSearchParams(formState).toString();
+        e.preventDefault()
+        const queryParams = new URLSearchParams({ ...formState, "max-price": formState.maxPrice }).toString()
         navigate(`/products?${queryParams}`)
     };
 
     return (
         <form className='filter' onSubmit={handleSubmit}>
             <label>
-                Max Price: 
+                Max Price 
                 <input
-                    type='text'
+                    type='number'
                     name='maxPrice'
                     value={formState.maxPrice}
                     onChange={handleInputChange}
                 />
             </label>
             <label>
-                Includes: 
+                Includes 
                 <input
                     type='text'
                     name='includes'
@@ -43,15 +43,15 @@ const Filter = () => {
                 />
             </label>
             <label>
-                Limit: 
+                Limit 
                 <input
-                    type='text'
+                    type='number'
                     name='limit'
                     value={formState.limit}
                     onChange={handleInputChange}
                 />
             </label>
-            <button type='submit'>Apply</button>
+            <button type='submit'>Filter</button>
         </form>
     )
 }

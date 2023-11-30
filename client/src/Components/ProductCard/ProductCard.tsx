@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import Product from "../../Models/Product"
 
 import "./ProductCard.css"
@@ -11,9 +12,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
     return (
         <li className="product-card">
-            <h3>
+            <Link to={`/products/${product._id}`}>
                 {product.name}
-            </h3>
+            </Link>
             <p>
                 ${product.price}
             </p>

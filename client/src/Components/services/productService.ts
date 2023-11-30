@@ -17,3 +17,9 @@ export const getProducts: ProductGetter = async (maxPrice, includes, limit) => {
     const response = await axios.get(`${baseURL}/products`, { params })
     return response.data
 }
+
+export const getProductById = async (id: string): Promise<Product> => {
+  const response = await axios.get(`${baseURL}/products/${id}`)
+
+  return response.data
+}

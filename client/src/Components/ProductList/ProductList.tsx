@@ -1,10 +1,11 @@
-import React, { useState, useEffect} from "react"
-import Product from "../../Models/Product"
-import { getProducts } from "../services/productService"
+import React, { useState, useEffect} from 'react'
+import Product from '../../Models/Product'
+import { getProducts } from '../services/productService'
 import ProductCard from "../ProductCard/ProductCard"
 import { useSearchParams } from 'react-router-dom'
+import Filter from '../Filter/Filter'
 
-import "./ProductList.css"
+import './ProductList.css'
 
 const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -27,6 +28,7 @@ const ProductList = () => {
     <>
       <div className="product-card-container">
         <ul>
+          <Filter />
           {products.map(product => (
             <ProductCard
                 product={product}
